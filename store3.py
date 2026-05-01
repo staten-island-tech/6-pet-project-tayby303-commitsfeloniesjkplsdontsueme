@@ -4,9 +4,14 @@ stock=[{"name":"hot dog combo", "price": 1.50, "desc": "a hot dog and a drink"},
 for index, item in enumerate(stock):
     print(index, ":", item["name"], "; $", item["price"], ";", item["desc"]) #prints list of items & their index inside stock
 cart=[]  #list of items you buy
-def store(cart):
-    item=int(input("Please enter the index number of the item you want to purchase: "))  #asks the items from stock you want
-    cart.append(stock[item])    #adds the item you input into cart
+class customer:
+    def _init_(self, name, money):
+        self.name=name
+        self.money=money
+    def store(self, cart):
+        self.cart=cart
+        item=int(input("Please enter the index number of the item you want to purchase: "))  #asks the items from stock you want
+        self.cart.append(stock[item])    #adds the item you input into cart
 cashier=input("Are you done shopping yet? yes/no ").lower()  #asks if you are done shopping
 while cashier!="yes":
     store(cart)
