@@ -1,6 +1,6 @@
 stock=[{"name":"hot dog combo", "price": 1.50, "desc": "a hot dog and a drink"},
-{"name":"80in TV","price":999.99,"desc":"a 4K UHD 80in Samsung TV"},
-{"name":"LEGO Nissan Skyline","price":72.95,"desc":"Miniature Nissan Skyline made out of LEGO"}]   #items in stock
+{"name":"Lightsaber+","price":99999.99,"desc":"an upgraded lightsaber"},
+{"name":"Shield of Gliberglop","price":72.95,"desc":"a non-Newtonian shield"}]   #items in stock
 for index, item in enumerate(stock):
     print(index, ":", item["name"], "; $", item["price"], ";", item["desc"]) #prints list of items & their index inside stock
 cart=[]
@@ -10,13 +10,14 @@ class Hero:
         self.money = money
         self.cart=cart
 
-    def store(item, cart):
-        item=int(input("Please enter the index number of the item you want to purchase: "))  #asks the items from stock you want
-        cart.append(stock[item])    #adds the item you input into cart
+    def store(self, item, cart):
+        self.item=item
+        self.item=int(input("Please enter the index number of the item you want to purchase: "))  #asks the items from stock you want
+        cart.append(stock[self.item])    #adds the item you input into cart
 Jillian = Hero("Jillian", 150, ["Potion"])
 cashier=input("Are you done shopping yet? yes/no ").lower()  #asks if you are done shopping
 while cashier!="yes":
-    Jillian.store(item, cart)
+    Jillian.store(item,cart)
     cashier=input("Are you done shopping yet? yes/no ").lower()  #asks if you are done shopping
 if cashier=="yes":
     def receipt(orders):
@@ -29,4 +30,4 @@ if cashier=="yes":
         for item, value in the_receipt.items():
             price=value['price']*value['qty']   #the price of each item will be the price per item times the quantity
             print(item, price, value['qty'])    #it will print the name, total price of the specific items, the value that is the amount per item
-    receipt(Jillian.__dict__)
+    receipt(Jillian.cart.__dict__)
