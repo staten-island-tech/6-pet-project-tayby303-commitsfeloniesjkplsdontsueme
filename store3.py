@@ -17,7 +17,7 @@ class Hero:
 Jillian = Hero("Jillian", 150, ["Potion"])
 cashier=input("Are you done shopping yet? yes/no ").lower()  #asks if you are done shopping
 while cashier!="yes":
-    Jillian.store(item,cart)
+    Jillian.store('',[])
     cashier=input("Are you done shopping yet? yes/no ").lower()  #asks if you are done shopping
 if cashier=="yes":
     def receipt(orders):
@@ -30,4 +30,4 @@ if cashier=="yes":
         for item, value in the_receipt.items():
             price=value['price']*value['qty']   #the price of each item will be the price per item times the quantity
             print(item, price, value['qty'])    #it will print the name, total price of the specific items, the value that is the amount per item
-    receipt(Jillian.cart.__dict__)
+    receipt(Jillian.cart)
