@@ -4,21 +4,12 @@ stock=[{"name":"hot dog combo", "price": 1.50, "desc": "a hot dog and a drink"},
 for index, item in enumerate(stock):
     print(index, ":", item["name"], "; $", item["price"], ";", item["desc"]) #prints list of items & their index inside stock
 class Hero:
-    def __init__(self, name, money, cart=[]):
+    def __init__(self, name, money, cart):
         self.name = name
         self.money = money
         self.cart=cart
-    def store(self, item, cart=[]):
-        self.item=item
-        item=int(input("Please enter the index number of the item you want to purchase: "))  #asks the items from stock you want
-        cart.append(stock[item])    #adds the item you input into cart
-Jillian = Hero("Jillian", 150, ["Potion"])
-cashier=input("Are you done shopping yet? yes/no ").lower()  #asks if you are done shopping
-while cashier!="yes":
-    Jillian.store("",)
-    cashier=input("Are you done shopping yet? yes/no ").lower()  #asks if you are done shopping
-if cashier=="yes":
-    def receipt(orders):
+        cart=[]
+    def receipt(self, orders):
         the_receipt={}  
         for item in orders:
             if item['name'] in the_receipt: #if the item is already in the_receipt, the quantity of that item will go up by 1
@@ -28,4 +19,13 @@ if cashier=="yes":
         for item, value in the_receipt.items():
             price=value['price']*value['qty']   #the price of each item will be the price per item times the quantity
             print(item, price, value['qty'])    #it will print the name, total price of the specific items, the value that is the amount per item
-    print(receipt(Jillian.cart))
+    def store(self, stock, cart):
+        cashier=input("Are you done shopping yet? yes/no ").lower()  #asks if you are done shopping
+        while cashier!="yes":
+            item=int(input("Please enter the index number of the item you want to purchase: "))  #asks the items from stock you want
+            cart.append(stock[item])    #adds the item you input into cart
+            cashier=input("Are you done shopping yet? yes/no ").lower()  #asks if you are done shopping
+        if cashier=="yes":
+            self.receipt(cart)
+Jillian = Hero("Jillian", 150, ["Potion"])
+Jillian.store(stock, Jillian.cart)
