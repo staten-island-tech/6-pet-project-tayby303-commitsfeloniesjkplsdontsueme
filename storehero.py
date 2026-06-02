@@ -22,10 +22,15 @@ class Hero:
     def store(self, stock, cart):
         cashier=input("Are you done shopping yet? yes/no ").lower()  #asks if you are done shopping
         while cashier!="yes":
-            item=int(input("Please enter the index number of the item you want to purchase: "))  #asks the items from stock you want
-            cart.append(stock[item])    #adds the item you input into cart
+            product=input("Please enter the index number of the item you want to purchase: ")  #asks the items from stock you want
+            if product=='hot dog combo':
+                cart.append(stock[0])    #adds the item you input into cart
+            elif product=='Lightsaber+':
+                cart.append(stock[1])
+            elif product=='Shield of Gliberglop':
+                cart.append(stock[2])
             cashier=input("Are you done shopping yet? yes/no ").lower()  #asks if you are done shopping
         if cashier=="yes":
             self.receipt(cart)
-Jillian = Hero("Jillian", 150, ["Potion"])
+Jillian = Hero("Jillian", 150, [])
 Jillian.store(stock, Jillian.cart)
